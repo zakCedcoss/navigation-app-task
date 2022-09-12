@@ -48,7 +48,11 @@ function Home() {
   return (
     <div className="home">
       <header className="navbar">
-        <input type="text" onChange={(e) => handleChange(e.target.value)} />
+        <input
+          type="text"
+          onChange={(e) => handleChange(e.target.value)}
+          placeholder="Search Users"
+        />
         <Link to="/addUser">
           <button>Add User</button>
         </Link>
@@ -60,7 +64,7 @@ function Home() {
           <p>Email</p>
           <p>Phone</p>
           <p>Company Name</p>
-          <p>Delete User</p>
+          <p>Actions</p>
         </div>
         {users?.map((user) => {
           return (
