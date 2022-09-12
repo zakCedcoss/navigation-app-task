@@ -23,7 +23,7 @@ function AddUser() {
     if (newData.length !== 0 && !isError) {
       localStorage.setItem("data", JSON.stringify(newData));
       setIsError(false);
-      navigate("/");
+      navigate("/", { state: true });
     }
   }, [newData, isError]);
 

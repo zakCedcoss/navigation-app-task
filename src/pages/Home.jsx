@@ -1,21 +1,21 @@
-import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import UserDetails from "../components/UserDetails";
-
-let firstRenderOnly = false;
+import UserAction from "./UserAction";
 
 function Home() {
   const API = "https://jsonplaceholder.typicode.com/users";
 
   const [users, setUsers] = useState([]);
   const [backup, setBackup] = useState([]);
+  const location = useLocation();
 
   const handleChange = (value) => {
     if (value === "") {
       setUsers(backup);
       return;
     }
-    const searchedUser = users.filter((user) => {
+    const searchedUser = backup.filter((user) => {
       return user.username.toLowerCase().indexOf(value) === -1 ? false : true;
     });
     setUsers(searchedUser);
@@ -26,10 +26,9 @@ function Home() {
   };
 
   useEffect(() => {
-    if (firstRenderOnly) {
+    if (location.state) {
       return;
     }
-    console.log("fetching");
     fetch(API)
       .then((resp) => resp.json())
       .then((data) => {
@@ -37,18 +36,16 @@ function Home() {
         setUsers(data);
         setBackup(data);
       });
-    firstRenderOnly = true;
   }, []);
 
   useEffect(() => {
-    console.log("local storage");
     const data = JSON.parse(localStorage.getItem("data"));
     setUsers(data);
     setBackup(data);
   }, []);
 
   // console.log("backup data:", backup);
-  console.log(firstRenderOnly);
+
   return (
     <div className="home">
       <header className="navbar">

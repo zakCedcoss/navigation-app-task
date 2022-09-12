@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { validateEmail, validatePhone } from "../utils/vailidation";
 
-function EditUser() {
+function UserAction({ title, action }) {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -18,25 +18,29 @@ function EditUser() {
   const [isError, setIsError] = useState(false);
 
   const navigate = useNavigate();
-  const params = useParams();
+  let params = {};
+
+  if (action === "edit") params = useParams();
 
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("data"));
-    if (data.length > 0) {
-      const foundData = data.find((item) => item.id === Number(params.id));
-      setName(foundData.name);
-      setUsername(foundData.username);
-      setEmail(foundData.email);
-      setPhone(foundData.phone);
-      setCompany(foundData.company?.name);
+    if (action === "edit") {
+      const data = JSON.parse(localStorage.getItem("data"));
+      if (data.length > 0) {
+        const foundData = data.find((item) => item.id === Number(params.id));
+        setName(foundData.name);
+        setUsername(foundData.username);
+        setEmail(foundData.email);
+        setPhone(foundData.phone);
+        setCompany(foundData.company?.name);
+      }
     }
   }, []);
 
   useEffect(() => {
     if (newData.length !== 0 && !isError) {
       localStorage.setItem("data", JSON.stringify(newData));
-      navigate("/");
       setIsError(false);
+      navigate("/", { state: true });
     }
   }, [newData, isError]);
 
@@ -51,16 +55,29 @@ function EditUser() {
       !companyError
     ) {
       setIsError(false);
-      const d = JSON.parse(localStorage.getItem("data"));
-      const data = d.filter((item) => item.id !== Number(params.id));
-      const updatedInput = {
-        name,
-        username,
-        email,
-        phone,
-        company: { name: company },
-        id: Number(params.id),
-      };
+      let data = JSON.parse(localStorage.getItem("data"));
+      let updatedInput = {};
+      if (action === "edit") {
+        data = data.filter((item) => item.id !== Number(params.id));
+        updatedInput = {
+          name,
+          username,
+          email,
+          phone,
+          company: { name: company },
+          id: Number(params.id),
+        };
+      } else if (action === "add") {
+        updatedInput = {
+          name,
+          username,
+          email,
+          phone,
+          company: { name: company },
+          id: Math.floor(Math.random() * 5645617),
+        };
+      }
+
       if (data) {
         const newData = [...data, updatedInput];
         setNewData(newData);
@@ -92,7 +109,6 @@ function EditUser() {
 
   const handleNameChange = (value) => {
     const val = value.trim();
-    console.log(val);
     setName(val);
     let error = "";
     if (val.length === 0) {
@@ -103,7 +119,6 @@ function EditUser() {
 
   const handleUsernameChange = (value) => {
     const val = value.trim();
-    console.log(val);
     setUsername(val);
     let error = "";
     if (val.length === 0) {
@@ -114,7 +129,6 @@ function EditUser() {
 
   const handleCompanyChange = (value) => {
     const val = value.trim();
-    console.log(val);
     setCompany(val);
     let error = "";
     if (val.length === 0) {
@@ -126,7 +140,7 @@ function EditUser() {
   return (
     <>
       <form className="add-user" onSubmit={handleSubmit}>
-        <h1>Edit User</h1>
+        <h1>{title}</h1>
         <label>
           <span>Name :</span>
           <input
@@ -135,6 +149,7 @@ function EditUser() {
             value={name}
             placeholder="Enter your name"
             onChange={(e) => handleNameChange(e.target.value)}
+            required
           />
           <span>{nameError}</span>
         </label>
@@ -146,6 +161,7 @@ function EditUser() {
             value={username}
             placeholder="Enter your username"
             onChange={(e) => handleUsernameChange(e.target.value)}
+            required
           />
           <span>{usernameError}</span>
         </label>
@@ -157,6 +173,7 @@ function EditUser() {
             value={email}
             placeholder="Enter your email"
             onChange={(e) => handleEmailChange(e.target.value)}
+            required
           />
           <span>{emailError}</span>
         </label>
@@ -168,6 +185,7 @@ function EditUser() {
             value={phone}
             placeholder="Enter your phone"
             onChange={(e) => handlePhoneChange(e.target.value)}
+            required
           />
           <span>{phoneError}</span>
         </label>
@@ -179,10 +197,11 @@ function EditUser() {
             value={company}
             placeholder="Enter your company name"
             onChange={(e) => handleCompanyChange(e.target.value)}
+            required
           />
           <span>{companyError}</span>
         </label>
-        <button type="submit">Update User</button>
+        <button type="submit">{action === "edit" ? "Edit" : "Add"} User</button>
       </form>
       {isError && (
         <span className="error">Please fill all the details correctly !!!</span>
@@ -191,4 +210,4 @@ function EditUser() {
   );
 }
 
-export default EditUser;
+export default UserAction;
