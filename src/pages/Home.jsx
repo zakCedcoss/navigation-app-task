@@ -2,12 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import UserDetails from "../components/UserDetails";
 
+let firstRenderOnly = false;
+
 function Home() {
   const API = "https://jsonplaceholder.typicode.com/users";
 
   const [users, setUsers] = useState([]);
   const [backup, setBackup] = useState([]);
-  const firstRenderOnly = useRef(false);
 
   const handleChange = (value) => {
     if (value === "") {
@@ -25,7 +26,7 @@ function Home() {
   };
 
   useEffect(() => {
-    if (firstRenderOnly.current) {
+    if (firstRenderOnly) {
       return;
     }
     console.log("fetching");
@@ -36,7 +37,7 @@ function Home() {
         setUsers(data);
         setBackup(data);
       });
-    firstRenderOnly.current = true;
+    firstRenderOnly = true;
   }, []);
 
   useEffect(() => {
