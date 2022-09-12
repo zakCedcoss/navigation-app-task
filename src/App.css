@@ -1,8 +1,10 @@
 .App {
   width: 100vw;
+  min-height: 100vh;
+  background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
 }
 .navbar {
-  background-color: #c5c5c5;
+  background: linear-gradient(90deg, #fcff9e 0%, #c67700 100%);
   padding: 1rem;
 }
 
@@ -16,11 +18,12 @@
   border-radius: 10px;
 }
 .navbar button {
+  color:#fcff9e;
   width: 100px;
   padding: 0.5rem;
   border: 1px solid black;
   border-radius: 5px;
-  background-color: white;
+  background-color:#d53369;
   cursor: pointer;
 }
 
@@ -35,6 +38,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  color: white;
 }
 
 .user-details p {
@@ -72,11 +76,13 @@
 }
 
 .add-user h1{
+  font-size: 1.3rem;
   margin-bottom: 1.5rem;
 }
 
 .add-user label {
   width:100%;
+color: white;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -104,13 +110,14 @@
   border: none;
   color: white;
   padding: 0.5rem;
+  border-radius: 10px;
   background-color: black;
   margin-block: 1rem;
   cursor: pointer;
 }
 
 .add-user button:hover {
-  background-color: white;
+  background-color: #d53369;
   color: black;
   border:1px solid black ;
 }

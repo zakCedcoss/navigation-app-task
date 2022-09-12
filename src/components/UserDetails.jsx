@@ -15,7 +15,9 @@ function UserDetails({ user, handleSetUsers }) {
     <div className="user-details">
       <p>{user.id}</p>
       <p>
-        <Link to={`/${user.id}`}>{user.username}</Link>
+        <Link to={`/${user.id}`} title={user.name}>
+          {user.username}
+        </Link>
       </p>
       <p>{user.email}</p>
       <p>{user.phone.split(" ")[0]}</p>
