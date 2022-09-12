@@ -24,8 +24,14 @@
   cursor: pointer;
 }
 
+.navbar button:hover {
+  color: white;
+  background-color: black;
+  border-color: white;
+}
+
 .user-details {
-  margin-block: 1rem;
+  padding-inline: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -33,6 +39,12 @@
 
 .user-details p {
   flex: 1;
+  height: 30px;
+  padding: 0.3rem;
+  margin-block: 0.3rem;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
 }
 
 .user-details p:first-child {
@@ -45,6 +57,7 @@
 .user-details p:last-child {
   flex: 0.5;
   text-align: center;
+  border-right: 1px solid black;
 }
 
 .add-user {
@@ -108,4 +121,10 @@
   text-align: center;
   color: crimson;
   font-size: 2rem;
+}
+
+.table-heading {
+  font-weight: bold;
+  color: white;
+  background-color: black;
 }

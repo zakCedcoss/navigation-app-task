@@ -6,8 +6,8 @@ export const validatePhone = (phone) => {
     if (isNaN(phoneNumber)) {
         return "Phone cannot be string";
     }
-    if(phone.length > 10) {
-        return "Phone greater than 10 digits"
+    if(phone.length !== 10) {
+        return "Phone number must be of 10 digits"
     }
 }
 

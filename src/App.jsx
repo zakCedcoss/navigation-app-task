@@ -1,10 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import AddUser from "./pages/AddUser";
-import EditUser from "./pages/EditUser";
 import Home from "./pages/Home";
 import UserAction from "./pages/UserAction";
-import { validatePhone } from "./utils/vailidation";
 
 function App() {
   return (

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import UserDetails from "../components/UserDetails";
-import UserAction from "./UserAction";
 
 function Home() {
   const API = "https://jsonplaceholder.typicode.com/users";
@@ -55,12 +54,7 @@ function Home() {
         </Link>
       </header>
       <div className="users">
-        <div
-          className="user-details"
-          style={{
-            fontWeight: "bold",
-          }}
-        >
+        <div className="user-details table-heading">
           <p>User Id</p>
           <p>UserName</p>
           <p>Email</p>
