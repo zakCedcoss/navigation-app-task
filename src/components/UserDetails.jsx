@@ -34,7 +34,7 @@ function UserDetails({ user, handleSetUsers }) {
         <Link to={`/${user.id}`}>
           <FaUserEdit />
         </Link>
-        <span style={{ cursor: "pointer" }} onClick={handleClick}>
+        <span className="delete" onClick={handleClick}>
           <MdDeleteForever />
         </span>
       </p>

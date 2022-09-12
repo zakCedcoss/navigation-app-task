@@ -137,3 +137,9 @@ color: white;
   color: white;
   background-color: black;
 }
+
+.delete:hover {
+  color: red;
+  cursor: pointer;
+}
+
