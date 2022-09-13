@@ -40,7 +40,7 @@ function UserAction({ title, action }) {
     if (newData.length !== 0 && !isError) {
       localStorage.setItem("data", JSON.stringify(newData));
       setIsError(false);
-      navigate("/", { state: true });
+      navigate("/", { state: true, replace: true });
     }
   }, [newData, isError]);
 

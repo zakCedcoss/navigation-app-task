@@ -13,6 +13,12 @@ function UserDetails({ user, handleSetUsers }) {
     }
   };
 
+  function modifyPhone(phone) {
+    let modifiedPhone = phone.split(/[\s-()\.]/);
+    modifiedPhone = modifiedPhone.filter((num) => !isNaN(Number(num)));
+    return modifiedPhone;
+  }
+
   return (
     <div className="user-details">
       <p>{user.id}</p>
@@ -22,7 +28,7 @@ function UserDetails({ user, handleSetUsers }) {
         </Link>
       </p>
       <p>{user.email}</p>
-      <p>{user.phone.split(" ")[0]}</p>
+      <p>{modifyPhone(user.phone)}</p>
       <p>{user.company.name}</p>
       <p
         style={{

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useRoutes } from "react-router-dom";
 import UserDetails from "../components/UserDetails";
 
 function Home() {
@@ -15,7 +15,10 @@ function Home() {
       return;
     }
     const searchedUser = backup.filter((user) => {
-      return user.username.toLowerCase().indexOf(value) === -1 ? false : true;
+      return user.username.toLowerCase().indexOf(value) === -1 ||
+        user.email.toLowerCase().indexOf(value) === -1
+        ? false
+        : true;
     });
     setUsers(searchedUser);
   };
@@ -28,6 +31,7 @@ function Home() {
     if (location.state) {
       return;
     }
+    if (location.pathname === "/") return;
     fetch(API)
       .then((resp) => resp.json())
       .then((data) => {
