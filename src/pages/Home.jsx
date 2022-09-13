@@ -9,6 +9,8 @@ function Home() {
   const [backup, setBackup] = useState([]);
   const location = useLocation();
 
+  console.log(location.state, location.pathname);
+
   const handleChange = (value) => {
     if (value === "") {
       setUsers(backup);
@@ -28,10 +30,9 @@ function Home() {
   };
 
   useEffect(() => {
-    if (location.state) {
+    if (location.state && location.pathname === "/") {
       return;
     }
-    if (location.pathname === "/") return;
     fetch(API)
       .then((resp) => resp.json())
       .then((data) => {
