@@ -137,8 +137,15 @@ function UserAction({ title, action }) {
     setCompanyError(error);
   };
 
+  const handleClick = () => {
+    navigate("/", { state: true, replace: true });
+  };
+
   return (
     <>
+      <button className="back" onClick={handleClick}>
+        Back
+      </button>
       <form className="add-user" onSubmit={handleSubmit}>
         <h1>{title}</h1>
         <label>
