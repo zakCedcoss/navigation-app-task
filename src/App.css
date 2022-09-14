@@ -45,7 +45,6 @@
 
 .user-details p {
   flex: 1;
-  height: 30px;
   padding: 0.3rem;
   margin-block: 0.3rem;
   border-bottom: 1px solid black;
