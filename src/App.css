@@ -210,4 +210,8 @@
     width: 100%;
     font-size: 0.9rem;
   }
+
+  .delete {
+    color: #fcff9e;
+  }
 }

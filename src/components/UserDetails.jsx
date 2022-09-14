@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaUserEdit } from "react-icons/fa";
-import { MdDeleteForever } from "react-icons/md";
+import { AiTwotoneDelete } from "react-icons/ai";
 
 function UserDetails({ user, handleSetUsers }) {
   const handleClick = () => {
@@ -41,7 +41,7 @@ function UserDetails({ user, handleSetUsers }) {
           <FaUserEdit />
         </Link>
         <span className="delete" onClick={handleClick}>
-          <MdDeleteForever />
+          <AiTwotoneDelete />
         </span>
       </p>
     </div>
